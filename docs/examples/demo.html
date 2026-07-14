@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Demo i Webbläsaren</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; line-height: 1.6; }
+        button { padding: 10px 15px; margin: 5px; font-size: 16px; cursor: pointer; border: 1px solid #ccc; border-radius: 4px; background-color: #f9f9f9; }
+        button:hover { background-color: #e9e9e9; }
+        hr { margin: 20px 0; border: 0; border-top: 1px solid #eee; }
+        #btn-target-demo { font-weight: bold; transition: all 0.3s; }
+    </style>
+</head>
+<body>
+
+    <h1>Kör JS-Demo manuellt</h1>
+    <p>Öppna konsolen (<strong>F12 -> Fliken "Console"</strong>) och klicka på knapparna för att köra respektive demo:</p>
+
+    <button id="btn-demo1">Kör Demo 1: Scope</button>
+    <button id="btn-demo2">Kör Demo 2: Funktioner</button>
+    <button id="btn-demo3">Kör Demo 3: Array-metoder</button>
+    <button id="btn-demo4">Aktivera Demo 4: DOM-manipulation</button>
+
+    <hr>
+    
+    <button id="btn-target-demo" style="display: none;">
+        Klicka på mig för att testa DOM-ändring!
+    </button>
+
+    <script src="demo.js" defer></script>
+</body>
+</html>
