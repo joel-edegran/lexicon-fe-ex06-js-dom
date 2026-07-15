@@ -74,8 +74,7 @@
         <hr>
 
         <button id="btn-visa">Visa produkter</button>
-        <ul id="produkt-lista">
-            </ul>
+        <ul id="produkt-lista"></ul>
     </div>
 
     <script>
@@ -96,6 +95,7 @@
         // ==========================================================================
         // KOD FÖR NIVÅ 1 (Skriv ut i konsolen)
         // ==========================================================================
+       
         // 1. .filter() för Hårdvara:
         const hardvaruprodukter = produkter.filter(
             produkt => produkt.kategori?.toLocaleLowerCase() === 'hårdvara'
@@ -123,6 +123,29 @@
         // Tips: Hämta knappen och listan med document.querySelector().
         // Lägg till en addEventListener('click', () => { ... }) på knappen.
         // Loopa arrayen och använd document.createElement('li') för att bygga listan.
+
+        // Caching the DOM
+        const d = document;
+
+        // Using getElementById for optimal performance when selecting elements by ID
+        const knapp = d.getElementById('btn-visa');
+        const lista = d.getElementById('produkt-lista');
+        
+        knapp.addEventListener('click', () => {
+            lista.replaceChildren();
+            produkter.forEach(produkt => {
+                const produktnamn = typeof produkt.namn === 'string' && produkt.namn.trim() !== '' 
+                    ? produkt.namn.trim() 
+                    : 'Produktnamn saknas';
+                const pris = Number.isFinite(produkt.pris) && produkt.pris >= 0 
+                    ? `${produkt.pris} kr` 
+                    : 'Pris saknas';
+                const newListItem = d.createElement('li');
+                newListItem.textContent = `${produktnamn} - ${pris}`;
+                lista.appendChild(newListItem);
+            });
+        });
+
 
 
 
