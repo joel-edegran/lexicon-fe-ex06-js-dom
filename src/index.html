@@ -97,10 +97,23 @@
         // KOD FÖR NIVÅ 1 (Skriv ut i konsolen)
         // ==========================================================================
         // 1. .filter() för Hårdvara:
+        const hardvaruprodukter = produkter.filter(
+            produkt => produkt.kategori?.toLocaleLowerCase() === 'hårdvara'
+        );
+        console.table(hardvaruprodukter);
         
         // 2. .map() för VERSALER:
+        const produktnamnVersaler = produkter.map(produkt => ({
+            "Produktnamn (Versaler)": produkt.namn?.toUpperCase() || "NAMN SAKNAS"
+        }));
+        console.table(produktnamnVersaler);
         
         // 3. .reduce() för totalsumman:
+        const totalsumma = produkter.reduce(
+            (summa, produkt) => summa + (produkt.pris || 0), 0
+        );
+        console.log(`Totalsumma: ${totalsumma} kr`);
+
 
 
 
