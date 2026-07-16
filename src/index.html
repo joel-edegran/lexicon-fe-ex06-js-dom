@@ -125,6 +125,39 @@
         // Loopa arrayen och använd document.createElement('li') för att bygga listan.
 
         // Caching the DOM
+        // const d = document;
+
+        // Using getElementById for optimal performance when selecting elements by ID
+        // const knapp = d.getElementById('btn-visa');
+        // const lista = d.getElementById('produkt-lista');
+        
+        // knapp.addEventListener('click', () => {
+        //     lista.replaceChildren();
+        //     produkter.forEach(produkt => {
+        //         const produktnamn = typeof produkt.namn === 'string' && produkt.namn.trim() !== '' 
+        //             ? produkt.namn.trim() 
+        //             : 'Produktnamn saknas';
+        //         const pris = Number.isFinite(produkt.pris) && produkt.pris >= 0 
+        //             ? `${produkt.pris} kr` 
+        //             : 'Pris saknas';
+        //         const newListItem = d.createElement('li');
+        //         newListItem.textContent = `${produktnamn} - ${pris}`;
+        //         lista.appendChild(newListItem);
+        //     });
+        // });
+
+
+
+
+        // ==========================================================================
+        // KOD FÖR NIVÅ 3 (Ta bort element med e.target)
+        // ==========================================================================
+        // Tips: När du skapar ditt <li>-element i Nivå 2, skapa samtidigt en knapp:
+        // const taBortKnapp = document.createElement('button');
+        // Ge den klassen taBortKnapp.classList.add('btn-ta-bort') för stilens skull.
+        // Lägg till addEventListener('click', (e) => { ... }) på den och använd e.target.
+
+        // Caching the DOM
         const d = document;
 
         // Using getElementById for optimal performance when selecting elements by ID
@@ -142,20 +175,19 @@
                     : 'Pris saknas';
                 const newListItem = d.createElement('li');
                 newListItem.textContent = `${produktnamn} - ${pris}`;
+
+                const taBortKnapp = d.createElement('button');
+                taBortKnapp.textContent = 'Ta bort';
+                taBortKnapp.classList.add('btn-ta-bort');
+
+                taBortKnapp.addEventListener('click', (e) => {
+                    e.target.parentElement.remove();
+                });
+
+                newListItem.appendChild(taBortKnapp);
                 lista.appendChild(newListItem);
             });
         });
-
-
-
-
-        // ==========================================================================
-        // KOD FÖR NIVÅ 3 (Ta bort element med e.target)
-        // ==========================================================================
-        // Tips: När du skapar ditt <li>-element i Nivå 2, skapa samtidigt en knapp:
-        // const taBortKnapp = document.createElement('button');
-        // Ge den klassen taBortKnapp.classList.add('btn-ta-bort') för stilens skull.
-        // Lägg till addEventListener('click', (e) => { ... }) på den och använd e.target.
         
     </script>
     <script type="module" src="/assets/scripts/main.js"></script>
