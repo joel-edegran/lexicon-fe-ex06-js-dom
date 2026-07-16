@@ -1,4 +1,4 @@
-import '/assets/styles/main.styl'
+import '/assets/styles/main.css'
 
 // --- STARTDATA ---
 const produkter = [
