@@ -79,17 +79,23 @@ function listaProdukter() {
     });
 }
 
-function skapaProduktRad(produkt) {
-    const produktnamn = typeof produkt.namn === 'string' && produkt.namn.trim() !== '' 
+function formateraProdukt(produkt) {
+    const namn = typeof produkt.namn === 'string' && produkt.namn.trim() !== '' 
             ? produkt.namn.trim() 
             : 'Produktnamn saknas';
         
     const pris = Number.isFinite(produkt.pris) && produkt.pris >= 0 
         ? `${produkt.pris} kr` 
         : 'Pris saknas';
+    
+    return { namn, pris };
+}
+
+function skapaProduktRad(produkt) {
+    const { namn, pris } = formateraProdukt(produkt);
 
     const listpunkt = d.createElement('li');
-    listpunkt.textContent = `${produktnamn} - ${pris}`;
+    listpunkt.textContent = `${namn} - ${pris}`;
 
     const taBortKnapp = d.createElement('button');
     taBortKnapp.textContent = 'Ta bort';
