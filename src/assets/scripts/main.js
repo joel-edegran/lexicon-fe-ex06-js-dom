@@ -59,36 +59,45 @@ console.log(`Totalsumma: ${totalsumma} kr`);
 // Ge den klassen taBortKnapp.classList.add('btn-ta-bort') för stilens skull.
 // Lägg till addEventListener('click', (e) => { ... }) på den och använd e.target.
 
-// Caching the DOM
-const d = document;
-// Using getElementById for optimal performance when selecting elements by ID
-const knapp = d.getElementById('btn-visa');
-const lista = d.getElementById('produkt-lista');
-const taBortKnappKlass = 'btn-ta-bort';
 
+// Variabler
+const d = document; // Cachar DOM:en
+const knapp = d.getElementById('btn-visa'); // Använder getElementById för optimal prestanda vid selektion av element baserat på ID
+const lista = d.getElementById('produkt-lista');
+const taBortKnappKlass = 'btn-ta-bort'; // Inga magiska strängar
+
+// Event-lyssnare
 knapp.addEventListener('click', listaProdukter);
 lista.addEventListener('click', hanteraListklick);
 
+// Funktioner
 function listaProdukter() {
     lista.replaceChildren();
     produkter.forEach(produkt => {
-        const produktnamn = typeof produkt.namn === 'string' && produkt.namn.trim() !== '' 
-            ? produkt.namn.trim() 
-            : 'Produktnamn saknas';
-        const pris = Number.isFinite(produkt.pris) && produkt.pris >= 0 
-            ? `${produkt.pris} kr` 
-            : 'Pris saknas';
-
-        const listpunkt = d.createElement('li');
-        listpunkt.textContent = `${produktnamn} - ${pris}`;
-
-        const taBortKnapp = d.createElement('button');
-        taBortKnapp.textContent = 'Ta bort';
-        taBortKnapp.classList.add(taBortKnappKlass);
-
-        listpunkt.appendChild(taBortKnapp);
+        const listpunkt = skapaProduktRad(produkt);
         lista.appendChild(listpunkt);
     });
+}
+
+function skapaProduktRad(produkt) {
+    const produktnamn = typeof produkt.namn === 'string' && produkt.namn.trim() !== '' 
+            ? produkt.namn.trim() 
+            : 'Produktnamn saknas';
+        
+    const pris = Number.isFinite(produkt.pris) && produkt.pris >= 0 
+        ? `${produkt.pris} kr` 
+        : 'Pris saknas';
+
+    const listpunkt = d.createElement('li');
+    listpunkt.textContent = `${produktnamn} - ${pris}`;
+
+    const taBortKnapp = d.createElement('button');
+    taBortKnapp.textContent = 'Ta bort';
+    taBortKnapp.classList.add(taBortKnappKlass);
+
+    listpunkt.appendChild(taBortKnapp);
+
+    return listpunkt;
 }
 
 function hanteraListklick(e) {
