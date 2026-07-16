@@ -61,12 +61,13 @@ console.log(`Totalsumma: ${totalsumma} kr`);
 
 // Caching the DOM
 const d = document;
-
 // Using getElementById for optimal performance when selecting elements by ID
 const knapp = d.getElementById('btn-visa');
 const lista = d.getElementById('produkt-lista');
+const taBortKnappKlass = 'btn-ta-bort';
 
 knapp.addEventListener('click', listaProdukter);
+lista.addEventListener('click', hanteraListklick);
 
 function listaProdukter() {
     lista.replaceChildren();
@@ -77,18 +78,21 @@ function listaProdukter() {
         const pris = Number.isFinite(produkt.pris) && produkt.pris >= 0 
             ? `${produkt.pris} kr` 
             : 'Pris saknas';
-        const newListItem = d.createElement('li');
-        newListItem.textContent = `${produktnamn} - ${pris}`;
+
+        const listpunkt = d.createElement('li');
+        listpunkt.textContent = `${produktnamn} - ${pris}`;
 
         const taBortKnapp = d.createElement('button');
         taBortKnapp.textContent = 'Ta bort';
-        taBortKnapp.classList.add('btn-ta-bort');
+        taBortKnapp.classList.add(taBortKnappKlass);
 
-        taBortKnapp.addEventListener('click', (e) => {
-            e.target.parentElement.remove();
-        });
-
-        newListItem.appendChild(taBortKnapp);
-        lista.appendChild(newListItem);
+        listpunkt.appendChild(taBortKnapp);
+        lista.appendChild(listpunkt);
     });
+}
+
+function hanteraListklick(e) {
+    if (e.target.classList.contains(taBortKnappKlass)) {
+        e.target.parentElement.remove();
+    }
 }
