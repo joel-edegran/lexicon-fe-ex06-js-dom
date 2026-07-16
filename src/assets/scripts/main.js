@@ -2,12 +2,12 @@ import '/assets/styles/main.styl'
 
 // --- STARTDATA ---
 const produkter = [
-    { id: 1, namn: "Kodnings-kaffemugg", pris: 149, kategori: "Merch" },
-    { id: 2, namn: "Mekaniskt Tangentbord", pris: 1299, kategori: "Hårdvara" },
-    { id: 3, namn: "Ergonomisk Mus", pris: 799, kategori: "Hårdvara" },
+    { id: 1, namn: "", pris: true, kategori: "Merch" },
+    { id: 2, namn: 1, pris: "hej", kategori: "Hårdvara" },
+    { id: 3, namn: "Ergonomisk Mus", pris: null, kategori: "Hårdvara" },
     { id: 4, namn: "Klistermärke 'JS is King'", pris: 29, kategori: "Merch" },
-    { id: 5, namn: "Skärmrengöring", pris: 89, kategori: "Tillbehör" },
-    { id: 6, namn: "4K Webbkamera", pris: 1495, kategori: "Hårdvara" },
+    { id: 5, namn: "Skärmrengöring", pris: undefined, kategori: "Tillbehör" },
+    { id: 6, namn: "4K Webbkamera", pris: false, kategori: "Hårdvara" },
     { id: 7, namn: "Stilren Musmatta (Stor)", pris: 249, kategori: "Tillbehör" },
     { id: 8, namn: "Programmerar-hoodie", pris: 599, kategori: "Merch" },
     { id: 9, namn: "USB-C Hub (6-i-1)", pris: 449, kategori: "Hårdvara" },
@@ -25,15 +25,24 @@ const hardvaruprodukter = produkter.filter(
 console.table(hardvaruprodukter);
 
 // 2. .map() för VERSALER:
-const produktnamnVersaler = produkter.map(produkt => ({
-    "Produktnamn (Versaler)": produkt.namn?.toUpperCase() || "NAMN SAKNAS"
-}));
+const produktnamnVersaler = produkter.map(produkt => {
+    const namn = produkt?.namn;
+    const harGiltigtNamn = typeof namn === 'string' && namn.trim() !== '';
+    return {
+        "Produktnamn (Versaler)": harGiltigtNamn
+        ? namn.trim().toUpperCase()
+        : "NAMN SAKNAS"
+    };
+});
 console.table(produktnamnVersaler);
 
 // 3. .reduce() för totalsumman:
-const totalsumma = produkter.reduce(
-    (summa, produkt) => summa + (produkt.pris || 0), 0
-);
+const totalsumma = produkter.reduce((summa, produkt) => {
+    const giltigtPris = Number.isFinite(produkt?.pris) && produkt.pris >= 0
+        ? produkt.pris
+        : 0;
+    return summa + giltigtPris;
+}, 0);
 console.log(`Totalsumma: ${totalsumma} kr`);
 
 
