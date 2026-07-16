@@ -66,7 +66,9 @@ const d = document;
 const knapp = d.getElementById('btn-visa');
 const lista = d.getElementById('produkt-lista');
 
-knapp.addEventListener('click', () => {
+knapp.addEventListener('click', listaProdukter);
+
+function listaProdukter() {
     lista.replaceChildren();
     produkter.forEach(produkt => {
         const produktnamn = typeof produkt.namn === 'string' && produkt.namn.trim() !== '' 
@@ -89,4 +91,4 @@ knapp.addEventListener('click', () => {
         newListItem.appendChild(taBortKnapp);
         lista.appendChild(newListItem);
     });
-});
+}
