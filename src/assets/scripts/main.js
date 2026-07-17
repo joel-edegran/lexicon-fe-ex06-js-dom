@@ -70,7 +70,7 @@ console.log(`Totalsumma: ${totalsumma} kr`);
 
 
 // Variabler
-const d = document; // Cachar DOM:en
+const d = document;
 const knapp = d.getElementById('btn-visa'); // Använder getElementById för optimal prestanda vid selektion av element baserat på ID
 const lista = d.getElementById('produkt-lista');
 const taBortKnappKlass = 'btn-ta-bort'; // Inga magiska strängar
