@@ -55,7 +55,23 @@ console.log(`Totalsumma: ${totalsumma} kr`);
 // Lägg till en addEventListener('click', () => { ... }) på knappen.
 // Loopa arrayen och använd document.createElement('li') för att bygga listan.
 
+// const knapp = d.getElementById('btn-visa'); // Använder getElementById för optimal prestanda vid selektion av element baserat på ID
+// const lista = d.getElementById('produkt-lista');
 
+// knapp.addEventListener('click', () => {
+//     lista.replaceChildren();
+//     produkter.forEach(produkt => {
+//         const produktnamn = typeof produkt.namn === 'string' && produkt.namn.trim() !== '' 
+//             ? produkt.namn.trim() 
+//             : 'Produktnamn saknas';
+//         const pris = Number.isFinite(produkt.pris) && produkt.pris >= 0 
+//             ? `${produkt.pris} kr` 
+//             : 'Pris saknas';
+//         const newListItem = d.createElement('li');
+//         newListItem.textContent = `${produktnamn} - ${pris}`;
+//         lista.appendChild(newListItem);
+//     });
+// });
 
 
 
