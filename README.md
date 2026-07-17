@@ -1,8 +1,8 @@
 # Exercise 6: "The Shopping Cart" (DOM Manipulation)
 
-**Program:** Lexicon / LTU (VT-2026) 
-**Course:** JavaScript Basics & DOM Manipulation
-**Tags:** `javascript` `es6` `dom` `event-handling` `array-methods` `vite`
+**Program:** Lexicon / LTU (VT-2026)  
+**Course:** JavaScript Basics & DOM Manipulation  
+**Tags:** `javascript` `es6` `dom` `event-handling` `array-methods` `vite`  
 
 ---
 
